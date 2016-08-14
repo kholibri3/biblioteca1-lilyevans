@@ -11,7 +11,7 @@ public class Main {
         PrintStream printStream = System.out;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        BookList checkedOutBooks = new BookList(printStream);
+        BookList checkedOutBooks = new BookList(printStream, "Thank you! Enjoy the book.", "That book is not available.");
         BookList availableBooks = getAvailableBookList(printStream);
 
         Biblioteca biblioteca = new Biblioteca(availableBooks, checkedOutBooks, printStream);
@@ -25,7 +25,7 @@ public class Main {
         Book hp2 = new Book("HP 2", "JK Row", "1997", printStream);
         Book hp3 = new Book("HP 3", "JK Row", "1997", printStream);
 
-        BookList availableBooks = new BookList(printStream);
+        BookList availableBooks = new BookList(printStream, "Thank you for returning the book.", "That is not a valid book to return.");
 
         availableBooks.addBook(hp1);
         availableBooks.addBook(hp2);

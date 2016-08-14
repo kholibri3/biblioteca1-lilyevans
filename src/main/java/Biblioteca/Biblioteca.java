@@ -19,25 +19,12 @@ public class Biblioteca {
         availableBookList.printBookList();
     }
 
-    public void printCheckedOutBooks() {
-        checkedOutBookList.printBookList();
-    }
-
     public void checkOutBook(String title) {
-        if(availableBookList.containsBook(title)){
-            Book bookToCheckOut = availableBookList.removeBook(title);
-            checkedOutBookList.addBook(bookToCheckOut);
-            printStream.println("Thank you! Enjoy the book.");
-        } else
-            printStream.println("That book is not available.");
+        availableBookList.moveBook(title, checkedOutBookList);
     }
 
     public void checkInBook(String title) {
-        if(checkedOutBookList.containsBook(title)) {
-            Book bookToCheckIn = checkedOutBookList.removeBook(title);
-            availableBookList.addBook(bookToCheckIn);
-            printStream.println("Thank you for returning the book.");
-        } else
-            printStream.println("That is not a valid book to return.");
+        checkedOutBookList.moveBook(title, availableBookList);
     }
+
 }

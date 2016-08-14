@@ -28,8 +28,5 @@ public class Book {
         return title.equals(this.title);
     }
 
-    public static void main(String[] args) {
-
-    }
 
 }

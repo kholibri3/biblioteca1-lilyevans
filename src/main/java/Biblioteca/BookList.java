@@ -2,14 +2,19 @@ package Biblioteca;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class BookList {
 
-    private ArrayList<Book> books;
+    private Collection<Book> books;
     private PrintStream printStream;
+    private String successMessage;
+    private String failureMessage;
 
-    public BookList(PrintStream printStream) {
+    public BookList(PrintStream printStream, String successMessage, String failureMessage) {
         this.printStream = printStream;
+        this.successMessage = successMessage;
+        this.failureMessage = failureMessage;
         this.books = new ArrayList<Book>();
 
     }
@@ -42,9 +47,28 @@ public class BookList {
         for (Book bookChoice : books){
             if (bookChoice.thisIsMyTitle(title)){
                 books.remove(bookChoice);
+
                 return bookChoice;
             }
         }
+
         return null;
+    }
+
+    public void printSuccessMessage() {
+        printStream.println(successMessage);
+    }
+
+    public void printFailureMessage() {
+        printStream.println(failureMessage);
+    }
+
+    public void moveBook(String title, BookList toBookList) {
+        if(this.containsBook(title)) {
+            Book bookToCheckIn = removeBook(title);
+            toBookList.addBook(bookToCheckIn);
+            toBookList.printSuccessMessage();
+        } else
+            toBookList.printFailureMessage();
     }
 }
