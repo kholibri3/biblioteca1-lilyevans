@@ -16,7 +16,6 @@ public class BookList {
         this.successMessage = successMessage;
         this.failureMessage = failureMessage;
         this.books = new ArrayList<Book>();
-
     }
 
     public boolean containsBook(String title) {

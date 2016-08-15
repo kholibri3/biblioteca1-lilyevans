@@ -25,7 +25,7 @@ public class BibliotecaTests {
         book2 = mock(Book.class);
         availableBookList = mock(BookList.class);
         checkedOutBookList = mock(BookList.class);
-        biblioteca = new Biblioteca(availableBookList, checkedOutBookList, printStream);
+        biblioteca = new Biblioteca(availableBookList, checkedOutBookList);
     }
 
     @Test

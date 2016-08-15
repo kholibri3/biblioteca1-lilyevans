@@ -19,7 +19,7 @@ public class Menu {
     public void run() throws IOException {
         printWelcome();
         printOptionsList();
-        executeUserInput();
+        executeMenuOption();
         printGoodbye();
     }
 
@@ -36,30 +36,34 @@ public class Menu {
 
     }
 
-    public void executeUserInput() throws IOException {
+    public void executeMenuOption() throws IOException {
         String choice = getUserInput();
 
         while(!choice.equals("0")) {
-            if (choice.equals("1")) {
-                biblioteca.printAvailableBooks();
-            }
-            else if (choice.equals("2")){
-                printStream.println("Please enter a book title.");
-                String title = reader.readLine();
-                biblioteca.checkOutBook(title);
-            } else if (choice.equals("3")){
-                printStream.println("Please enter a book title.");
-                String title = reader.readLine();
-                biblioteca.checkInBook(title);
-            }
-            else {
-                printStream.println("Select a valid option!");
-            }
-
+            processUserInput(choice);
             printStream.println();
             printOptionsList();
             choice = getUserInput();
         }
+    }
+
+    private void processUserInput(String choice) throws IOException {
+        if (choice.equals("1")) {
+            biblioteca.printAvailableBooks();
+        } else if (choice.equals("2")){
+            biblioteca.checkOutBook(readUserInput());
+        } else if (choice.equals("3")){
+            biblioteca.checkInBook(readUserInput());
+        } else if (choice.equals("4")){
+            // list available movies
+        } else {
+            printStream.println("Select a valid option!");
+        }
+    }
+
+    private String readUserInput() throws IOException {
+        printStream.println("Please enter a book title.");
+        return reader.readLine();
     }
 
     private String getUserInput() {

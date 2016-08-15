@@ -12,15 +12,15 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         BookList checkedOutBooks = new BookList(printStream, "Thank you! Enjoy the book.", "That book is not available.");
-        BookList availableBooks = getAvailableBookList(printStream);
+        BookList availableBooks = initializeAvailableBookList(printStream);
 
-        Biblioteca biblioteca = new Biblioteca(availableBooks, checkedOutBooks, printStream);
+        Biblioteca biblioteca = new Biblioteca(availableBooks, checkedOutBooks);
 
         Menu menu = new Menu(printStream, reader, biblioteca);
         menu.run();
     }
 
-    private static BookList getAvailableBookList(PrintStream printStream) {
+    private static BookList initializeAvailableBookList(PrintStream printStream) {
         Book hp1 = new Book("HP 1", "JK Row", "1997", printStream);
         Book hp2 = new Book("HP 2", "JK Row", "1997", printStream);
         Book hp3 = new Book("HP 3", "JK Row", "1997", printStream);
